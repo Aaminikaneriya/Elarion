@@ -1,5 +1,5 @@
 
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useCallback } from "react";
 import {
   Box, Typography, Paper, Grid, Card, CardContent, Avatar, Chip,
   Button, TextField, InputAdornment, MenuItem, Dialog, DialogTitle,
@@ -158,7 +158,7 @@ export default function CRM() {
 
   const today = new Date().toLocaleDateString("en-CA");
 
-  const getFollowStatus = (lead) => {
+ const getFollowStatus = useCallback((lead) => {
     if (
       lead.followUpStatus === "Pending" &&
       lead.followUpDate &&
@@ -167,7 +167,7 @@ export default function CRM() {
     ) return "Overdue";
 
     return lead.followUpStatus || "Pending";
-  };
+  }, [today]);
 
   const filteredLeads = useMemo(() => {
     return leads.filter((lead) => {
