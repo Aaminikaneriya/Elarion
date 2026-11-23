@@ -183,7 +183,7 @@ export default function CRM() {
 
       return matchSearch && matchStatus && matchFollow;
     });
-  }, [leads, search, statusFilter, followFilter]);
+   }, [leads, search, statusFilter, followFilter, getFollowStatus]);
 
   const sortedLeads = useMemo(() => {
     return [...filteredLeads].sort((a, b) => {
